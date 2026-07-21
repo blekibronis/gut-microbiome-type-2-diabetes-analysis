@@ -112,9 +112,6 @@ The pipeline writes all outputs to the following directories:
  
 Raw sequence data and study metadata are publicly available via [MGnify (MGYS00005285)](https://www.ebi.ac.uk/metagenomics/studies/MGYS00005285) and [NCBI BioProject PRJNA422434](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA422434). This repository does not redistribute raw sequencing data; the pipeline downloads it directly from MGnify on execution.
  
-## License
- 
-Add a license of your choice (e.g., MIT) here.
  
 ## Citation / Acknowledgments
  
