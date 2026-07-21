@@ -54,3 +54,7 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 5fc91cc3fa42ccad552e3746d033629a1a6d292d
+
+# Project-specific output folders
+/figures/
+/results/
