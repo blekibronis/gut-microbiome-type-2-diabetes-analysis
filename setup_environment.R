@@ -12,7 +12,8 @@ cran_packages <- c(
   "dplyr",
   "tidyr",
   "readr",
-  "vegan"
+  "vegan",
+  "jsonlite"
 )
 
 bioc_packages <- c(

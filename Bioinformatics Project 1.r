@@ -24,7 +24,7 @@ DISEASE_KEEP   <- c("Healthy", "T2D")
 MIN_PREVALENCE <- 0.05 # 5% prevalence threshold for differential abundance
 
 # Create output directories
-DIRS <- c("data_raw", "data_clean", "metadata", "results", "figures")
+DIRS <- c("data_clean", "metadata", "results", "figures")
 invisible(lapply(DIRS, dir.create, showWarnings = FALSE, recursive = TRUE))
 
 # Load required libraries
@@ -42,6 +42,7 @@ suppressPackageStartupMessages({
   library(readr)
   library(DESeq2)
   library(ANCOMBC)
+  library(jsonlite)
 })
 
 # Helper function to generate clean taxonomy labels
@@ -102,12 +103,26 @@ if (nrow(combined_metadata_clean) == 0) {
 write_csv(combined_metadata_clean, "metadata/combined_metadata_PRJNA422434_T2D_Healthy.csv")
 selected_analyses <- combined_metadata_clean$analysis_accession
 
-# Automatically remove any 0-byte or corrupted cached BIOM files before downloading
-corrupted_cache <- list.files(".mgnify_cache", recursive = TRUE, full.names = TRUE)
-corrupted_cache <- corrupted_cache[file.size(corrupted_cache) == 0]
+# Automatically remove any 0-byte or corrupted/incomplete cached BIOM files
+biom_files <- list.files(".mgnify_cache", pattern = "\\.biom$", recursive = TRUE, full.names = TRUE)
+corrupted_cache <- c()
+
+for (f in biom_files) {
+  if (file.size(f) == 0) {
+    corrupted_cache <- c(corrupted_cache, f)
+  } else {
+    is_valid_json <- tryCatch({
+      jsonlite::validate(readLines(f, warn = FALSE))
+    }, error = function(e) FALSE)
+    if (!is_valid_json) {
+      corrupted_cache <- c(corrupted_cache, f)
+    }
+  }
+}
+
 if (length(corrupted_cache) > 0) {
   file.remove(corrupted_cache)
-  message(sprintf("Removed %d 0-byte corrupted cache file(s).", length(corrupted_cache)))
+  message(sprintf("Cleaned %d 0-byte or invalid cached BIOM file(s).", length(corrupted_cache)))
 }
 
 # Download taxonomic abundance as TreeSummarizedExperiment (TreeSE)
@@ -224,6 +239,9 @@ if (!taxa_are_rows(ps_filtered)) otu_mat <- t(otu_mat)
 taxa_keep <- rowSums(otu_mat > 0) >= min_samples
 
 ps_deseq <- prune_taxa(taxa_keep, ps_filtered)
+
+# Enforce integer counts for DESeq2 to prevent float-precision errors
+otu_table(ps_deseq) <- round(otu_table(ps_deseq))
 
 dds <- phyloseq_to_deseq2(ps_deseq, ~ disease_group)
 dds <- DESeq(dds, sfType = "poscounts")
