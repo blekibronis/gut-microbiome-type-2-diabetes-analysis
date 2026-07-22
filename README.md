@@ -9,7 +9,7 @@ The gut microbiome has been repeatedly implicated in the pathophysiology of Type
  
 **Differentially abundant taxa** — log fold change of taxa significantly associated with disease status (ANCOM-BC2, q < 0.05):
  
-![Top differentially abundant taxa](/images/top_differential_abundance_ANCOMBC2_T2D_vs_Healthy.png)
+![Top differentially abundant taxa](images/top_differential_abundance_ANCOMBC2_T2D_vs_Healthy.png)
  
 *Butyricicoccus*, a known butyrate producer, is depleted in T2D, consistent with prior literature linking reduced butyrate production to T2D-associated dysbiosis. Overall community diversity did not differ substantially between groups, with similar Shannon index distributions and overlapping clustering in the Bray-Curtis PCoA. This suggests the dysbiosis reflects shifts in a small set of specific taxa (e.g., *Christensenellaceae*, *Fusobacterium*, *Bilophila*) rather than a global restructuring of the microbiome.
  
@@ -17,8 +17,8 @@ The gut microbiome has been repeatedly implicated in the pathophysiology of Type
  
 <table>
 <tr>
-<td><img src="/images/alpha_diversity_shannon_T2D_vs_Healthy.png" alt="Shannon alpha diversity" width="400"/></td>
-<td><img src="/images/beta_diversity_bray_pcoa_T2D_vs_Healthy.png" alt="Bray-Curtis PCoA" width="400"/></td>
+<td><img src="images/alpha_diversity_shannon_T2D_vs_Healthy.png" alt="Shannon alpha diversity" width="400"/></td>
+<td><img src="images/beta_diversity_bray_pcoa_T2D_vs_Healthy.png" alt="Bray-Curtis PCoA" width="400"/></td>
 </tr>
 </table>
 Alpha diversity (Shannon) differs modestly but significantly between groups (Wilcoxon p = 0.036); beta diversity ordination (Bray-Curtis PCoA) shows substantial overlap between T2D and Healthy samples, with PERMANOVA confirming a statistically significant but very small effect (R² = 0.006, p = 0.022).
