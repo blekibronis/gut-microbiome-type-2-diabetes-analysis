@@ -11,7 +11,7 @@ The gut microbiome has been repeatedly implicated in the pathophysiology of Type
  
 ![Top differentially abundant taxa](/images/top_differential_abundance_ANCOMBC2_T2D_vs_Healthy.png)
  
-*Butyricicoccus*, a known butyrate producer, is depleted in T2D — consistent with prior literature linking reduced butyrate production to T2D-associated dysbiosis. Enrichment in T2D is concentrated in a small set of taxa (e.g., Christensenellaceae, *Fusobacterium*, *Bilophila*), rather than reflecting a global shift in community composition.
+*Butyricicoccus*, a known butyrate producer, is depleted in T2D, consistent with prior literature linking reduced butyrate production to T2D-associated dysbiosis. Overall community diversity did not differ substantially between groups, with similar Shannon index distributions and overlapping clustering in the Bray-Curtis PCoA. This suggests the dysbiosis reflects shifts in a small set of specific taxa (e.g., *Christensenellaceae*, *Fusobacterium*, *Bilophila*) rather than a global restructuring of the microbiome.
  
 **Diversity comparisons**:
  
